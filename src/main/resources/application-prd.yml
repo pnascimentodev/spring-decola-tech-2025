@@ -32,4 +32,14 @@ management:
         include: health,info
   endpoint:
     health:
-      show-details: never 
+      show-details: never
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+  show-actuator: true
+  packages-to-scan: me.dio.decola_tech_2025.controller 
