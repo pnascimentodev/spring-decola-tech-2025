@@ -23,6 +23,13 @@ public class UserController {
         var user = userService.findById(id);
         return ResponseEntity.ok(user);
     }
+    
+    @GetMapping
+    public ResponseEntity<Object> findAll() {
+        userService.findByAll();
+        return ResponseEntity.ok().build();
+    }
+
 
     @PostMapping
     public ResponseEntity<User> create(@RequestBody User userToCreate) {

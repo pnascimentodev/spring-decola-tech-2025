@@ -34,4 +34,8 @@ public  class UserServiceImpl implements UserService {
         return userRepository.save(userToUpdate);
     }
 
+    @Override
+    public void findByAll() {
+    }
+
 }

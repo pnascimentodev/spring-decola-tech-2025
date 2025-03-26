@@ -6,4 +6,6 @@ public interface UserService {
     User findById(Long id);
     User create(User userToCreate);
     User update(User userToUpdate);
+
+    void findByAll();
 }
