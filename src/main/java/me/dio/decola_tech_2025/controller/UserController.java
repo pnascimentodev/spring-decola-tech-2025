@@ -38,7 +38,9 @@ public class UserController {
         var user = userService.findById(id);
         user.setName(userToUpdate.getName());
         user.setAccount(userToUpdate.getAccount());
-        return ResponseEntity.ok(userService.create(user));
+        user = userService.update(user);
+
+        return ResponseEntity.ok(user);
     }
 
     @DeleteMapping("/{id}")
