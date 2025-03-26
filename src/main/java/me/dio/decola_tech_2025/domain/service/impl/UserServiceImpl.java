@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.NoSuchElementException;
 
 @Service
-public class UserServiceImpl implements UserService {
+public abstract class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
@@ -27,13 +27,5 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException("This Account number already exists.");
         }
         return userRepository.save(userToCreate);
-    }
-
-    @Override
-    public User update(User userToUpdate) {
-        if (userRepository.existsByAccountNumber(userToUpdate.getAccount().getNumber())) {
-            throw new IllegalArgumentException("This Account number already exists.");
-        }
-        return userRepository.save(userToUpdate);
     }
 } 
