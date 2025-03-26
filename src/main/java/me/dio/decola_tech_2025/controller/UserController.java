@@ -33,4 +33,17 @@ public class UserController {
                 .toUri();
         return ResponseEntity.created(location).body(userCreated);
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User userToUpdate) {
+        var user = userService.findById(id);
+        user.setName(userToUpdate.getName());
+        user.setAccount(userToUpdate.getAccount());
+        return ResponseEntity.ok(userService.create(user));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        userService.findById(id);
+        return ResponseEntity.noContent().build();
+    }
 } 

@@ -28,4 +28,12 @@ public class UserServiceImpl implements UserService {
         }
         return userRepository.save(userToCreate);
     }
+
+    @Override
+    public User update(User userToUpdate) {
+        if (userRepository.existsByAccountNumber(userToUpdate.getAccount().getNumber())) {
+            throw new IllegalArgumentException("This Account number already exists.");
+        }
+        return userRepository.save(userToUpdate);
+    }
 } 
