@@ -1,5 +1,6 @@
 package me.dio.decola_tech_2025.domain.service.impl;
 
+import jakarta.transaction.Transactional;
 import me.dio.decola_tech_2025.domain.model.User;
 import me.dio.decola_tech_2025.domain.repository.UserRepository;
 import me.dio.decola_tech_2025.domain.service.UserService;
@@ -40,6 +41,11 @@ public  class UserServiceImpl implements UserService {
         return userRepository.save(userToUpdate);
     }
 
-
+    @Transactional
+    @Override
+    public void delete(Long id) {
+        User user = userRepository.findById(id).orElseThrow(NoSuchElementException::new);
+        userRepository.delete(user);
+    }
 
 }
