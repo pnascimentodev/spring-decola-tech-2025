@@ -25,9 +25,9 @@ public class UserController {
     }
     
     @GetMapping
-    public ResponseEntity<Object> findAll() {
-        userService.findByAll();
-        return ResponseEntity.ok().build();
+    public ResponseEntity<User> findAll() {
+        var users = userService.findByAll();
+        return ResponseEntity.ok((User) users);
     }
 
 
