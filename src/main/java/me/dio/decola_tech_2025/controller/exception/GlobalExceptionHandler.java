@@ -1,4 +1,4 @@
-package me.dio.decola_tech_2025.exception;
+package me.dio.decola_tech_2025.controller.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
