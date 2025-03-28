@@ -8,6 +8,5 @@ public interface UserService {
     User findById(Long id);
     User create(User userToCreate);
     User update(User userToUpdate);
-    List<User> findByAll();
-
+    List<User> findAll();
 }

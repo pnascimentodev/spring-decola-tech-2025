@@ -23,8 +23,8 @@ public  class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findByAll() {
-        return userRepository.findAll();
+    public List<User> findAll() {
+        return List.of();
     }
 
     @Override
@@ -39,4 +39,7 @@ public  class UserServiceImpl implements UserService {
     public User update(User userToUpdate) {
         return userRepository.save(userToUpdate);
     }
+
+
+
 }
