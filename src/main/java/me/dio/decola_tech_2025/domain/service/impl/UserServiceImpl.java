@@ -37,8 +37,12 @@ public  class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public User update(User userToUpdate) {
-        return userRepository.save(userToUpdate);
+        User existingUser = userRepository.findById(userToUpdate.getId())
+                .orElseThrow(NoSuchElementException::new);
+        existingUser.setName(userToUpdate.getName());
+        return userRepository.save(existingUser);
     }
 
     @Transactional

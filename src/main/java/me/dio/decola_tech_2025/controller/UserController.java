@@ -8,6 +8,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/users")
@@ -42,12 +43,23 @@ public class UserController {
     }
     @PutMapping("/{id}")
     public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User userToUpdate) {
-        var user = userService.findById(id);
-        user.setName(userToUpdate.getName());
-        user.setAccount(userToUpdate.getAccount());
-        user = userService.update(user);
+        try {
+            User user = userService.findById(id);
 
-        return ResponseEntity.ok(user);
+            if (userToUpdate.getName() != null && !userToUpdate.getName().trim().isEmpty()) {
+                user.setName(userToUpdate.getName().trim());
+            } else {
+                return ResponseEntity.badRequest().build(); // Ou lançar exceção
+            }
+
+            User updatedUser = userService.update(user);
+            return ResponseEntity.ok(updatedUser);
+
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
     @DeleteMapping("/{id}")
